@@ -5,3 +5,12 @@ services:
 script:
     - docker build -t fmturati/node .
     - docker images fmturati/node
+
+before_deploy:
+    - docker login -u fhelipet -p Fmt260486
+
+deploy:
+    provider: script
+    script: docker push fmturati/node
+    on:
+        branch: master
